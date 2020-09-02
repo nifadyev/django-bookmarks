@@ -1,0 +1,1 @@
+# Env variables are stored in venv/bin/activate
