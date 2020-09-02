@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 # from django.http import HttpResponse
 # from django.core.paginator import Paginator, EmptyPage, \
 #                                   PageNotAnInteger
-# from common.decorators import ajax_required
+from common.decorators import ajax_required
 from .forms import ImageCreateForm
 from .models import Image
 
@@ -52,7 +52,7 @@ def image_detail(request, id, slug):
     )
 
 
-# @ajax_required
+@ajax_required
 @login_required
 @require_POST
 def image_like(request):
