@@ -5,3 +5,4 @@ django-extensions==3.0.7
 werkzeug==1.0.1
 pyOpenSSL==19.1.0
 certifi==2020.6.20
+easy-thumbnails==2.7
