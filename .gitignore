@@ -2,3 +2,4 @@ __pycache__
 bookmarks/cert.crt
 bookmarks/cert.key
 media/
+.vscode
