@@ -1,3 +1,4 @@
+import redis
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -6,11 +7,16 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 
 from common.decorators import ajax_required
 from actions.utils import create_action
 from .forms import ImageCreateForm
 from .models import Image
+
+
+# connect to redis
+r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
 
 
 @login_required
@@ -45,12 +51,13 @@ def image_create(request):
 
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
+    # increment total image views by 1
+    total_views = r.incr(f'image:{image.id}:views')
 
     return render(
         request,
         'images/image/detail.html',
-        {'section': 'images',
-        'image': image}
+        {'section': 'images', 'image': image, 'total_views': total_views}
     )
 
 
