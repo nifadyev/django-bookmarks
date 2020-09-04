@@ -61,8 +61,6 @@
   if (typeof window.jQuery != "undefined") {
     bookmarklet();
   } else {
-    // Check for conflicts
-    var conflict = typeof window.$ != "undefined";
     // Create the script and point to Google API
     var script = document.createElement("script");
     script.src =
