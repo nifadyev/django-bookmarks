@@ -6,8 +6,7 @@
     {% if profile.photo %}
       {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
       <a href="{{ user.get_absolute_url }}">
-        <img src="{{ im.url }}" alt="{{ user.get_full_name }}"
-         class="item-img">
+        <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class="item-img">
       </a>
     {% endif %}
 
@@ -26,9 +25,7 @@
     <p>
       <span class="date">{{ action.created|timesince }} ago</span>
       <br />
-      <a href="{{ user.get_absolute_url }}">
-        {{ user.first_name }}
-      </a>
+      <a href="{{ user.get_absolute_url }}">{{ user.first_name }}</a>
       {{ action.verb }}
       {% if action.target %}
         {% with target=action.target %}
