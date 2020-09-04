@@ -24,7 +24,7 @@
       {% include "images/image/list_ajax.html" with images=user.images_created.all %}
     </div>
   {% endwith %}
-{% endblock %}
+{% endblock content %}
 
 {% block domready %}
   $('a.follow').click(function(e){
@@ -39,19 +39,16 @@
           var previous_action = $('a.follow').data('action');
 
           // toggle data-action
-          $('a.follow').data('action',
-            previous_action == 'follow' ? 'unfollow' : 'follow');
+          $('a.follow').data('action', previous_action == 'follow' ? 'unfollow' : 'follow');
           // toggle link text
-          $('a.follow').text(
-            previous_action == 'follow' ? 'Unfollow' : 'Follow');
+          $('a.follow').text(previous_action == 'follow' ? 'Unfollow' : 'Follow');
 
           // update total followers
-          var previous_followers = parseInt(
-            $('span.count .total').text());
+          var previous_followers = parseInt($('span.count .total').text());
           $('span.count .total').text(previous_action == 'follow' ?
           previous_followers + 1 : previous_followers - 1);
         }
       }
     );
   });
-{% endblock %}
+{% endblock domready %}
