@@ -39,7 +39,7 @@
       {% endfor %}
     </div>
   {% endwith %}
-{% endblock %}
+{% block content %}
 
 {% block domready %}
   $('a.like').click(function(e){
@@ -55,11 +55,9 @@
           var previous_action = $('a.like').data('action');
 
           // toggle data-action
-          $('a.like').data('action', previous_action == 'like' ?
-          'unlike' : 'like');
+          $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
           // toggle link text
-          $('a.like').text(previous_action == 'like' ? 'Unlike' :
-          'Like');
+          $('a.like').text(previous_action == 'like' ? 'Unlike' : 'Like');
 
           // update total likes
           var previous_likes = parseInt($('span.count .total').text());
@@ -69,4 +67,4 @@
       }
     );
   });
-{% endblock %}
+{% endblock domready %}
