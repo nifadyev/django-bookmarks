@@ -25,7 +25,6 @@ def image_create(request):
         # form is sent
         form = ImageCreateForm(data=request.POST)
         if form.is_valid():
-            # form data is valid
             cleaned_form = form.cleaned_data
             new_item = form.save(commit=False)
 
@@ -44,8 +43,7 @@ def image_create(request):
     return render(
         request,
         'images/image/create.html',
-        {'section': 'images',
-        'form': form}
+        {'section': 'images', 'form': form}
     )
 
 
@@ -96,8 +94,6 @@ def image_list(request):
         images = paginator.page(1)
     except EmptyPage:
         if request.is_ajax():
-            # If the request is AJAX and the page is out of range
-            # return an empty page
             return HttpResponse('')
         # If page is out of range deliver last page of results
         images = paginator.page(paginator.num_pages)
